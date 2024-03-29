@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
+import Header from "./components/Header"
+import Search from "./components/Search"
+import Details from "./components/Details"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+	const [searchQuery, setSearchQuery] = useState("chicken")
+
+	const handleSearch = (query) => {
+		setSearchQuery(query)
+	}
+	return (
+		<div className='flex items-center gap-4 flex-col'>
+			<Header />
+			<div className='w-[1200px] flex flex-col gap-4 items-center p-3 h-[455px]'>
+				<Search onSearch={handleSearch} />
+				<Details searchQuery={searchQuery} />
+			</div>
+		</div>
+	)
 }
 
-export default App;
+export default App
